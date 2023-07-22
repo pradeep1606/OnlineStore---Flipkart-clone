@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { BsFillLightningFill } from "react-icons/bs";
+import { HiShoppingCart } from "react-icons/hi";
 import { AiFillStar } from "react-icons/ai";
 import { useParams } from 'react-router-dom';
 import { useProductContext } from '../context/productcontex';
@@ -7,11 +8,12 @@ import { PageNavigation } from '../components/PageNavigation';
 import ProductImages from '../components/ProductImages';
 import AddToCart from '../components/AddToCart';
 
-const API = "https://shoping-api.cyclic.app/api/products";
+const API = process.env.REACT_APP_API;
 
 const SingleProduct = () => {
   const { getSingleProduct, singleProduct, isSingleLoading } = useProductContext();
   const { id } = useParams();
+  // console.log(id);
 
   useEffect(() => {
     getSingleProduct(`${API}?id=${id}`)
@@ -28,14 +30,17 @@ const SingleProduct = () => {
 
   const highlights = description.split(", ");
 
+  const colorForAddtoCart = "bg-yellow-500"
+  const colorForBuyNow = "bg-orange-500"
+
   return (
     <>
       <div className='flex p-4 my-3'>
         <div className='w-[38%]'>
           <ProductImages imgs={image} />
           <div className='flex justify-end gap-3 text-white text-base font-semibold my-8'>
-            <AddToCart product={singleProduct} />
-            <button className='w-48 h-14 bg-orange-500 flex items-center justify-center'><BsFillLightningFill />&nbsp;BUY NOW</button>
+            <AddToCart product={singleProduct} btncolor={colorForAddtoCart} buttonName="ADD TO CART" icon={<HiShoppingCart />} />
+            <AddToCart product={singleProduct} btncolor={colorForBuyNow} buttonName="BUY NOW" icon={<BsFillLightningFill />} />
           </div>
         </div>
         {/* description Div */}

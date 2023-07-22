@@ -40,9 +40,9 @@ const Cart = (singleProduct) => {
                             allMrp += mrp;
                             return <div className='px-10 py-6' key={currElem.id}>
                                 <div className='grid grid-cols-7'>
-                                    <div className='p-1'><img className='h-fit w-fit' src={image} alt={category} /></div>
+                                    <Link to={`/SingleProduct/${id}`} className='p-1'><img className='h-fit w-fit' src={image} alt={category} /></Link>
                                     <div className='col-span-4 px-4'>
-                                        <span>{name}</span>
+                                        <Link to={`/SingleProduct/${id}`}><span>{name}</span></Link>
                                         <div className='text-[#696868] text-sm'>({company} {category})</div>
                                         <div className='text-[#696868] text-sm'>Color : {color}</div>
                                         <div className='mt-4 font-[Arial] space-x-4'>
